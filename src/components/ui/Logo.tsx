@@ -18,10 +18,10 @@ export function Logo({ compact = false }: { compact?: boolean }) {
       {!compact && (
         <div className="leading-none">
           <p className="font-display text-base font-extrabold tracking-tight text-sbi-700 dark:text-white">
-            SBI
+            SAHAYAK
           </p>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-            Agentic AI
+          <p className="mt-0.5 max-w-[180px] text-[10px] font-medium leading-tight text-slate-400">
+            Banking that understands you — not the other way around
           </p>
         </div>
       )}
