@@ -2,14 +2,15 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Eye, EyeOff, TrendingUp, ChevronRight } from 'lucide-react'
 import { useApp } from '../../context/AppContext'
-import { QUICK_ACTIONS, HERO_SHORTCUTS } from '../../data/mockData'
+import { QUICK_ACTIONS, HERO_SHORTCUTS, ACCOUNTS } from '../../data/mockData'
 import { TONES, formatINR } from '../../lib/tone'
 import { BankCard } from './BankCard'
 
 export function HeroSection() {
-  const { t } = useApp()
+  const { t, persona } = useApp()
   const [show, setShow] = useState(true)
-  const balance = 284560
+  const account = ACCOUNTS[persona]
+  const balance = account.balance
 
   return (
     <section className="space-y-4">
@@ -39,7 +40,7 @@ export function HeroSection() {
                 <p className="text-sm font-medium text-white/70">{t('balance')}</p>
                 <div className="mt-1 flex items-center gap-3">
                   <motion.h1
-                    key={show ? 'shown' : 'hidden'}
+                    key={`${persona}-${show}`}
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="font-display text-4xl font-extrabold tracking-tight sm:text-[2.9rem]"

@@ -56,35 +56,38 @@ h1, h2, h3 {
     background-image: linear-gradient(120deg, #0A5FA8 0%, #12A0E0 55%, #12B5A6 100%);
   }
 
+  /* Clean, solid, structured cards — crisp border + tight shadow (no glassy blur) */
   .card {
-    @apply rounded-3xl border transition-all duration-300;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.82));
-    backdrop-filter: blur(12px);
-    border-color: rgba(255, 255, 255, 0.9);
+    @apply rounded-2xl border border-slate-200/80 transition-all duration-300;
+    background-color: #fdfeff;
     box-shadow:
-      0 1px 0 0 rgba(255, 255, 255, 0.7) inset,
-      0 10px 30px -18px rgba(16, 42, 67, 0.28),
-      0 2px 8px -4px rgba(16, 42, 67, 0.08);
+      0 1px 2px rgba(15, 23, 42, 0.04),
+      0 4px 14px -8px rgba(15, 23, 42, 0.08);
   }
   .dark .card {
-    background: linear-gradient(180deg, rgba(30, 41, 59, 0.75), rgba(15, 23, 42, 0.7));
-    border-color: rgba(148, 163, 184, 0.12);
-    box-shadow:
-      0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
-      0 20px 40px -24px rgba(0, 0, 0, 0.7);
+    @apply border-slate-800;
+    background-color: rgba(30, 41, 59, 0.65);
+    box-shadow: 0 4px 18px -10px rgba(0, 0, 0, 0.55);
   }
 
   .card-hover {
-    @apply hover:-translate-y-1 hover:border-sbi-200/80;
+    @apply hover:-translate-y-0.5 hover:border-sbi-300/90;
   }
   .card-hover:hover {
     box-shadow:
-      0 1px 0 0 rgba(255, 255, 255, 0.8) inset,
-      0 24px 48px -20px rgba(10, 95, 168, 0.32),
-      0 6px 16px -8px rgba(10, 95, 168, 0.18);
+      0 2px 4px rgba(15, 23, 42, 0.05),
+      0 12px 28px -12px rgba(10, 95, 168, 0.2);
   }
   .dark .card-hover {
     @apply hover:border-sbi-600/60;
+  }
+
+  /* Soft grey inset surface — introduces the "grey" in grey+blue */
+  .surface {
+    @apply rounded-2xl border border-slate-200/70 bg-slate-100/70;
+  }
+  .dark .surface {
+    @apply border-slate-800 bg-slate-800/40;
   }
 
   .chip {

@@ -14,6 +14,7 @@ import { AnalyticsSection } from './components/analytics/AnalyticsSection'
 import { AccessibilityPanel } from './components/accessibility/AccessibilityPanel'
 import { AmbientBackground } from './components/ui/AmbientBackground'
 import { useApp } from './context/AppContext'
+import { ACCOUNTS } from './data/mockData'
 
 const stagger = {
   hidden: { opacity: 0, y: 20 },
@@ -21,10 +22,11 @@ const stagger = {
 }
 
 export default function App() {
-  const { a11y } = useApp()
+  const { a11y, persona, t } = useApp()
   const [a11yOpen, setA11yOpen] = useState(false)
   const [assistantOpen, setAssistantOpen] = useState(false)
   const simple = a11y.simpleMode
+  const account = ACCOUNTS[persona]
 
   return (
     <div className="relative min-h-screen pb-24 lg:pb-8">
@@ -35,8 +37,8 @@ export default function App() {
         {/* Mobile greeting (hidden on desktop where it's in the nav) */}
         <div className="md:hidden">
           <h1 className="font-display text-2xl font-extrabold">
-            <span className="text-slate-900 dark:text-white">Good Morning, </span>
-            <span className="gradient-text">Chhavi</span>
+            <span className="text-slate-900 dark:text-white">{t('greeting')}, </span>
+            <span className="gradient-text">{account.greetingName}</span>
             <span className="text-slate-900 dark:text-white"> 👋</span>
           </h1>
           <p className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
@@ -44,7 +46,7 @@ export default function App() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-teal opacity-70" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-teal" />
             </span>
-            Your AI Banking Assistant is Active
+            {t('assistantActive')}
           </p>
         </div>
 

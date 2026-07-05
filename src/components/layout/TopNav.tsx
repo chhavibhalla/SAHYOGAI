@@ -3,14 +3,17 @@ import { Sparkles, SlidersHorizontal } from 'lucide-react'
 import { Logo } from '../ui/Logo'
 import { LanguageSelector } from './LanguageSelector'
 import { NotificationBell } from './NotificationBell'
+import { ProfileSwitcher } from './ProfileSwitcher'
 import { useApp } from '../../context/AppContext'
+import { ACCOUNTS } from '../../data/mockData'
 
 interface Props {
   onOpenA11y: () => void
 }
 
 export function TopNav({ onOpenA11y }: Props) {
-  const { t } = useApp()
+  const { t, persona } = useApp()
+  const account = ACCOUNTS[persona]
 
   return (
     <header className="sticky top-0 z-30 border-b border-white/40 bg-white/70 backdrop-blur-xl dark:border-white/5 dark:bg-slate-950/70">
@@ -21,7 +24,7 @@ export function TopNav({ onOpenA11y }: Props) {
           <div className="hidden pl-1 md:block">
             <div className="flex items-center gap-2">
               <p className="font-display text-sm font-bold text-slate-900 dark:text-white">
-                {t('greeting')}, Chhavi 👋
+                {t('greeting')}, {account.greetingName} 👋
               </p>
             </div>
             <div className="flex items-center gap-1.5">
@@ -60,17 +63,7 @@ export function TopNav({ onOpenA11y }: Props) {
 
           <NotificationBell />
 
-          {/* Profile */}
-          <button className="flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 p-1 pr-2.5 transition hover:border-sbi-200 dark:border-slate-700 dark:bg-slate-800/70">
-            <img
-              src="https://i.pravatar.cc/80?img=47"
-              alt="Chhavi"
-              className="h-8 w-8 rounded-full object-cover ring-2 ring-sbi-100 dark:ring-sbi-500/30"
-            />
-            <span className="hidden text-xs font-semibold text-slate-700 dark:text-slate-200 lg:inline">
-              Chhavi
-            </span>
-          </button>
+          <ProfileSwitcher />
         </div>
       </div>
     </header>

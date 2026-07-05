@@ -9,6 +9,43 @@ import type {
   Persona, PersonaId, WidgetItem, Transaction, TelemetryEvent, AIInsight, ProactiveAlert, AnalyticsMetric,
 } from '../types'
 
+// Each customer account is bound to exactly one persona.
+// Switching account switches identity (name + avatar) AND the persona space.
+export interface Account {
+  id: PersonaId
+  name: string
+  greetingName: string
+  role: string
+  avatar: string
+  maskedId: string
+  cardLast4: string
+  balance: number
+  growth: string
+}
+
+export const ACCOUNTS: Record<PersonaId, Account> = {
+  student: {
+    id: 'student', name: 'Chhavi Bhalla', greetingName: 'Chhavi', role: 'Student',
+    avatar: 'https://i.pravatar.cc/96?img=47', maskedId: '•••• 8821', cardLast4: '8821',
+    balance: 48250, growth: '+8.2%',
+  },
+  senior: {
+    id: 'senior', name: 'Ramesh Verma', greetingName: 'Ramesh ji', role: 'Senior Citizen',
+    avatar: 'https://i.pravatar.cc/96?img=68', maskedId: '•••• 4417', cardLast4: '4417',
+    balance: 512400, growth: '+3.1%',
+  },
+  professional: {
+    id: 'professional', name: 'Aditya Rao', greetingName: 'Aditya', role: 'Working Professional',
+    avatar: 'https://i.pravatar.cc/96?img=12', maskedId: '•••• 2093', cardLast4: '2093',
+    balance: 284560, growth: '+12.4%',
+  },
+  business: {
+    id: 'business', name: 'Neha Kapoor', greetingName: 'Neha', role: 'Business Owner',
+    avatar: 'https://i.pravatar.cc/96?img=32', maskedId: '•••• 7756', cardLast4: '7756',
+    balance: 1864200, growth: '+18.6%',
+  },
+}
+
 export const PERSONAS: Persona[] = [
   { id: 'student', label: 'Student', emoji: '🎓', tagline: 'Banking that grows with your ambitions', accent: 'from-sbi-500 to-accent-violet' },
   { id: 'senior', label: 'Senior Citizen', emoji: '🌿', tagline: 'Calm, clear, and caring banking', accent: 'from-accent-teal to-sbi-500' },
