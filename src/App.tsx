@@ -5,10 +5,9 @@ import { BottomNav } from './components/layout/BottomNav'
 import { HeroSection } from './components/hero/HeroSection'
 import { RecentTransactions } from './components/hero/RecentTransactions'
 import { PersonaWidgets } from './components/persona/PersonaWidgets'
-import { AIInsightPanel } from './components/ai/AIInsightPanel'
-import { TelemetryTimeline } from './components/ai/TelemetryTimeline'
 import { ProactiveAlerts } from './components/ai/ProactiveAlerts'
 import { FloatingAssistant } from './components/ai/FloatingAssistant'
+import { QuickHelpPanel } from './components/ai/QuickHelpPanel'
 import { HumanEscalation } from './components/support/HumanEscalation'
 import { AnalyticsSection } from './components/analytics/AnalyticsSection'
 import { AccessibilityPanel } from './components/accessibility/AccessibilityPanel'
@@ -25,6 +24,7 @@ export default function App() {
   const { a11y, persona, t } = useApp()
   const [a11yOpen, setA11yOpen] = useState(false)
   const [assistantOpen, setAssistantOpen] = useState(false)
+  const [quickHelpOpen, setQuickHelpOpen] = useState(false)
   const simple = a11y.simpleMode
   const account = ACCOUNTS[persona]
 
@@ -59,16 +59,7 @@ export default function App() {
 
         {!simple && (
           <>
-            {/* AI intelligence row */}
-            <section className="grid gap-6 lg:grid-cols-3">
-              <div className="space-y-6 lg:col-span-2">
-                <TelemetryTimeline />
-                <RecentTransactions />
-              </div>
-              <div className="lg:col-span-1">
-                <AIInsightPanel />
-              </div>
-            </section>
+            <RecentTransactions />
 
             <ProactiveAlerts />
 
@@ -95,6 +86,7 @@ export default function App() {
       </main>
 
       <FloatingAssistant open={assistantOpen} setOpen={setAssistantOpen} />
+      <QuickHelpPanel open={quickHelpOpen} setOpen={setQuickHelpOpen} />
       <AccessibilityPanel open={a11yOpen} onClose={() => setA11yOpen(false)} />
       <BottomNav onAssistant={() => setAssistantOpen(true)} />
     </div>
